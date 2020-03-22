@@ -25,3 +25,32 @@ def main():
 if __name__ == "__main__":
 	main()
 
+#creating variable 'pages' with information about each page
+#'display' item used to inform how much of background image is shown on each page
+
+pages = [	
+	{
+		'filename': './content/index.html',
+		'output': './docs/intdex.html',
+		'title': 'Patrick Ware',
+		'display': 'full'
+	},
+	{
+		'filename': './content/aboutme.html',
+		'output': './docs/aboutme.html',
+		'title': 'About Me',
+		'display': 'half'
+	},
+	{
+		'filename': './content/resume.html',
+		'output': './docs/resume.html',
+		'title': 'Resume',
+		'display': 'half'
+	}
+	{
+		'filename':'./content/contact.html',
+		'output': './docs/contact.html',
+		'title':'Contact',
+		'display': 'full'
+	}
+]
