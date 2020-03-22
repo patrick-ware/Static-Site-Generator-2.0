@@ -46,7 +46,7 @@ pages = [
 		'output': './docs/resume.html',
 		'title': 'Resume',
 		'display': 'half'
-	}
+	},
 	{
 		'filename':'./content/contact.html',
 		'output': './docs/contact.html',
