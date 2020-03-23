@@ -21,13 +21,13 @@ def main():
 			page_filename = page['filename']
 			page_content = open(page_filename).read()
 			page_output = page['output']
-			combined_page = view_template.replace("{{content}}", page_content)
+			combined_page = view_template.replace("{{content_halfpage}}", page_content)
 			open(page_output, 'w+').write(combined_page)
 		else:
 			page_filename = page['filename']
 			page_content = open(page_filename).read()
 			page_output = page['output']
-			combined_page = template.replace("{{content}}", page_content)
+			combined_page = template.replace("{{content_fullpage}}", page_content)
 			open(page_output, 'w+').write(combined_page)
 
 
