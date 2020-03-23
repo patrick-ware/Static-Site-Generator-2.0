@@ -1,5 +1,5 @@
 template = open('./templates/base.html').read()
-view = ".view {{ height:50%;}}"
+view = "	.view {\n{ height:50%;}\n}"
 
 #function to insert CSS into template if page only displays half of background image
 def page_view():
