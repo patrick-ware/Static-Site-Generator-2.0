@@ -29,10 +29,9 @@ pages = [
 
 
 template = open('./templates/base.html').read()
-
-#function to insert CSS into template if page only displays half of background image
+#function to insert CSS value into template if page only displays half of background image
 def page_view():
-	view_template = template.replace("{{view}}", "50%")
+	view_template = template.replace('{{view}}', '50%').replace('{{content_fullpage}}','')
 	return view_template
 
 view_template = page_view()
