@@ -1,7 +1,8 @@
 def main():
 	print("Building site...")
+	page_view()
+	apply_template()
 	build_site()
-
 
 pages = [	
 	{
@@ -30,31 +31,34 @@ pages = [
 	}
 ]
 
-
-template = open('./templates/base.html').read()
 #function to insert CSS value into template if page only displays half of background image
 def page_view():
-	view_template = template.replace('{{view}}', '50%').replace('{{content_fullpage}}','')
+	for page in pages:
+		template = open('./templates/base.html').read()
+		image_display = page['image_display']
+		if image_display == 'half':
+			view_template = template.replace('{{view}}', '50%').replace('{{content_fullpage}}','')
+		else:
+			view_template = template.replace('{{view}}', '50%').replace('{{content_halfpage}}','')
 	return view_template
 
-view_template = page_view()
-
-def build_site()
-	template = open('./templates/base.html').read()
-
+def apply_template():
 	for page in pages:
-		if page['image_display'] == 'half':
-			page_filename = page['filename']
-			page_content = open(page_filename).read()
-			page_output = page['output']
+		page_filename = page['filename']
+		page_content = open(page_filename).read()
+		image_display = page['image_display']
+		view_template = page_view()
+		if image_display == 'half':
 			combined_page = view_template.replace("{{content_halfpage}}", page_content)
-			open(page_output, 'w+').write(combined_page)
 		else:
-			page_filename = page['filename']
-			page_content = open(page_filename).read()
-			page_output = page['output']
-			combined_page = template.replace("{{content_fullpage}}", page_content)
-			open(page_output, 'w+').write(combined_page)
+			combined_page = view_template.replace("{{content_fullpage}}", page_content)
+	return combined_page
+
+def build_site():
+	for page in pages:
+		combined_page=apply_template()
+		page_output = page['output']
+		open(page_output, 'w+').write(combined_page)
 
 if __name__ == "__main__":
 	main()
