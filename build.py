@@ -1,4 +1,7 @@
-#'display' item used to inform how much of background image is shown on each page
+def main():
+	print("Building site...")
+	build_site()
+
 
 pages = [	
 	{
@@ -36,9 +39,7 @@ def page_view():
 
 view_template = page_view()
 
-def main():
-	print("Building static site")
-
+def build_site()
 	template = open('./templates/base.html').read()
 
 	for page in pages:
