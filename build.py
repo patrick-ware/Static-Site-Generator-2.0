@@ -1,17 +1,35 @@
 def main():
-	print("Building site...")
+	print("Initializing site...")
 	for page in pages:
-		page_filename = page['filename']
-		image_display = page['image_display']
-		output = page['output']
-		page_content = open(page_filename).read()
-		template = open('./templates/base.html').read()
-		if image_display == 'half':
-			combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', page_content).replace('{{content_fullpage}}','')
-			open(output, 'w+').write(combined_page)
-		else:
-			combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', page_content).replace('{{content_halfpage}}','')
-			open(output, 'w+').write(combined_page)
+		generate_template(page)
+		construct_page()
+		write_page()
+
+def generate_template(page):
+	print("Gererating", page['title'], "template...")
+	filename = page['filename']
+	image_display = page['image_display']
+	content = open(filename).read()
+	template = open('./templates/base.html').read()
+	return template
+
+def construct_page():
+	print("Constructing page...")
+	template = generate_template(page)
+	if image_display == 'half':
+		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
+	else:
+		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
+	return combined_page
+
+def write_page():
+	combined_page = contstruct_page()
+	output = page['output']
+	print("Writing to file...")
+	open(output, 'w+').write(combined_page)
+
+
+
 
 pages = [	
 	{
