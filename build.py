@@ -16,7 +16,7 @@ def insert_header(webpage):
 		custom_template = template.replace('{{title}}', webpage['title'])
 	else:
 		custom_template = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title'])
-	
+
 	return custom_template
 
 #Conditional statement used to correctly place content and modify pageground image based on image_display_value
