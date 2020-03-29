@@ -23,7 +23,7 @@ def generate_page(item):
 #combined_page value data passed to write_data function to create file
 def write_data(item):
 	output = item['output']
-	combined_page = generate_template(item)
+	combined_page = generate_page(item)
 	open(output, 'w+').write(combined_page)
 
 pages = [	
