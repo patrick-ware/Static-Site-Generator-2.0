@@ -7,7 +7,6 @@ def main():
 
 #Generate combined page using content and base.html
 #Conditional statement used to correctly place content and modify background image based on image_display value
-
 def generate_page(item):
 	filename = item['filename']
 	template = open('./templates/base.html').read()	
@@ -20,7 +19,7 @@ def generate_page(item):
 
 	return combined_page
 
-#combined_page value data passed to write_data function to create file
+#Combined_page value data passed to write_data function to write file to disk
 def write_data(item):
 	output = item['output']
 	combined_page = generate_page(item)
