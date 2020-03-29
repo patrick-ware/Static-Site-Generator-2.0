@@ -13,9 +13,10 @@ def generate_page(webpage):
 	content = open(filename).read()
 	image_display = webpage['image_display']
 	if image_display == 'half':
-		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','').replace('{{title}}', webpage['title'])
+		combined_page = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title']).replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
 	else:
-		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','').replace('{{title}}', webpage['title'])
+		combined_page = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title']).replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
+	
 	return combined_page
 
 #Combined_page value data passed to write_data function to write file to disk
