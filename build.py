@@ -5,17 +5,17 @@ def main():
 		write_data(page)
 	print("Site built")
 
-#Generate combined page using content and base.html
-#Conditional statement used to correctly place content and modify background image based on image_display value
+
+#Conditional statement used to correctly place content and modify background image based on image_display value, and insert title
 def generate_page(item):
 	filename = item['filename']
 	template = open('./templates/base.html').read()	
 	content = open(filename).read()
 	image_display = item['image_display']
 	if image_display == 'half':
-		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
+		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','').replace('{{title}}', item['title'])
 	else:
-		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
+		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','').replace('{{title}}', item['title'])
 
 	return combined_page
 
