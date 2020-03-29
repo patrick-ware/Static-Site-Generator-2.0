@@ -7,22 +7,21 @@ def main():
 
 
 #Conditional statement used to correctly place content and modify background image based on image_display value, and insert title
-def generate_page(item):
-	filename = item['filename']
+def generate_page(webpage):
+	filename = webpage['filename']
 	template = open('./templates/base.html').read()	
 	content = open(filename).read()
-	image_display = item['image_display']
+	image_display = webpage['image_display']
 	if image_display == 'half':
-		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','').replace('{{title}}', item['title'])
+		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','').replace('{{title}}', webpage['title'])
 	else:
-		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','').replace('{{title}}', item['title'])
-
+		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','').replace('{{title}}', webpage['title'])
 	return combined_page
 
 #Combined_page value data passed to write_data function to write file to disk
-def write_data(item):
-	output = item['output']
-	combined_page = generate_page(item)
+def write_data(webpage):
+	output = webpage['output']
+	combined_page = generate_page(webpage)
 	open(output, 'w+').write(combined_page)
 
 pages = [	
