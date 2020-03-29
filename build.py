@@ -6,7 +6,6 @@ def main():
 		write_data(page)
 	print("Site built")
 
-
 #Conditional statement used to insert title and add active page marker to appropriate pages
 def insert_header(webpage):
 	title = webpage['title']
