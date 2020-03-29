@@ -1,27 +1,29 @@
 def main():
-	print("Initializing site...")
+	print("Building site...")
 	for page in pages:
-		generate_template(page)
-		construct_page(page)
+		generate_page(page)
+		write_data(page)
 	print("Site built")
-def generate_template(single_page):
-	print("Generating", single_page['title'], "template...")
-	filename = single_page['filename']
-	template = open('./templates/base.html').read()	
-	return template
 
-def construct_page(single_page):
-	print("Constructing", single_page['title'], "page...")
-	template = generate_template(single_page)
-	filename = single_page['filename']
-	output = single_page['output']
+#Generate combined page using content and base.html
+#Conditional statement used to correctly place content and modify background image based on image_display value
+
+def generate_page(item):
+	filename = item['filename']
+	template = open('./templates/base.html').read()	
 	content = open(filename).read()
-	image_display = single_page['image_display']
+	image_display = item['image_display']
 	if image_display == 'half':
 		combined_page = template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
 	else:
 		combined_page = template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
-	
+
+	return combined_page
+
+#combined_page value data passed to write_data function to create file
+def write_data(item):
+	output = item['output']
+	combined_page = generate_template(item)
 	open(output, 'w+').write(combined_page)
 
 pages = [	
